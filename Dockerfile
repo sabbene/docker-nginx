@@ -7,9 +7,7 @@ RUN yum -y install nginx
 RUN ln -sf /dev/stdout /var/log/nginx/access.log
 RUN ln -sf /dev/stderr /var/log/nginx/error.log
 
-# ntp port
-EXPOSE 80/tcp
-EXPOSE 443/udp
+COPY ./nginx /nginx
 
 # start nginx in the foreground
 ENTRYPOINT ["nginx", "-g", "daemon off;", "-c", "/nginx/nginx.conf"]
